@@ -17,7 +17,7 @@ open class TabWithStepperFlowContainer: TabFlowContainer {
 }
 
 public extension TabWithStepperFlowContainer {
-    
+
     public convenience init(flow: Flow,
                             title: String,
                             image: UIImage? = nil,
@@ -26,7 +26,7 @@ public extension TabWithStepperFlowContainer {
         let tab = UITabBarItem(title: title, image: image, selectedImage: selectedImage)
         self.init(flow: flow, tab: tab, stepper: stepper)
     }
-    
+
     public convenience init(flow: Flow,
                             title: String,
                             image: UIImage? = nil,
@@ -37,4 +37,3 @@ public extension TabWithStepperFlowContainer {
         self.init(flow: flow, tab: tab, stepper: stepperFactory(step))
     }
 }
-

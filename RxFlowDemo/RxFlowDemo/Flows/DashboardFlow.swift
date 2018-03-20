@@ -33,7 +33,7 @@ class DashboardFlow: Flow {
         }
 
     }
-    
+
     func navigateToDashboard() -> NextFlowItems {
         let wishlistStepper = WishlistStepper()
         let wishListFlow = WishlistFlow(withServices: self.services, andStepper: wishlistStepper)

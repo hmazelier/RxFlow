@@ -12,7 +12,7 @@ import UIKit
 public typealias TabsReady<RootViewController: UIViewController> = ([(RootViewController, UITabBarItem)]) -> Void
 
 public extension Flows {
-    
+
     /// Allow to be triggered only when Flows given as parameters are ready to be displayed.
     /// Once it is the case, the block is executed
     ///
@@ -26,9 +26,9 @@ public extension Flows {
         guard case let roots = flows.flatMap({ $0.root as? RootType }), roots.count == tabs.count else {
             fatalError ("Type mismatch, Flows roots types do not match the types awaited in the block")
         }
-        
+
         let tabbedRoots = zip(roots, tabs.map { $0.tab }).map { ($0.0, $0.1) }
-        
+
         _ = Observable<Void>.zip(flows.map { $0.rxFlowReady.asObservable() }) { _ in return Void() }
             .take(1)
             .subscribe(onNext: { _ in
@@ -37,7 +37,7 @@ public extension Flows {
     }
 }
 
-//MARK: - Returning [NextFlowItem]
+// MARK: - Returning [NextFlowItem]
 public extension Flows {
     /// Allow to be triggered only when Flows given as parameters are ready to be displayed.
     /// Once it is the case, the block is executed
@@ -51,17 +51,17 @@ public extension Flows {
         tabsWithSteppers tabs: [TabWithStepperFlowContainer],
         weak target: Target,
         block: @escaping (Target, [RootType]) -> Void) -> [NextFlowItem] {
-        
+
         Flows.whenReady(tabs: tabs) { [weak target] (tabbedRoots: [(RootType, UITabBarItem)]) -> Void in
             guard let target = target else { print("⚠️ WARNING Target was nil, this is probably unwanted."); return }
             tabbedRoots.forEach { $0.0.tabBarItem = $0.1 }
             block(target, tabbedRoots.map { $0.0 })
         }
-        
+
         // We can safely return the array of NextFlowItems since it is not dependent on the async call above
         return tabs.map { NextFlowItem(nextPresentable: $0.flow, nextStepper: $0.stepper) }
     }
-    
+
     /// Allow to be triggered only when Flows given as parameters are ready to be displayed.
     /// Once it is the case, the block is executed
     ///
@@ -75,18 +75,18 @@ public extension Flows {
         weak target: Target,
         block: @escaping (Target, UITabBarController) -> Void) -> [NextFlowItem] {
 
-        Flows.whenReady(tabs: tabs){ [weak target] (tabbedRoots: [(UIViewController, UITabBarItem)]) -> Void in
+        Flows.whenReady(tabs: tabs) { [weak target] (tabbedRoots: [(UIViewController, UITabBarItem)]) -> Void in
             guard let target = target else { print("⚠️ WARNING Target was nil, this is probably unwanted."); return }
             tabbedRoots.forEach { $0.0.tabBarItem = $0.1 }
             let tabBarController = UITabBarController()
             tabBarController.setViewControllers(tabbedRoots.map { $0.0 }, animated: false)
             block(target, tabBarController)
         }
-        
+
         // We can safely return the array of NextFlowItems since it is not dependent on the async call above
         return tabs.map { NextFlowItem(nextPresentable: $0.flow, nextStepper: $0.stepper) }
     }
-    
+
     /// Allow to be triggered only when Flows given as parameters are ready to be displayed.
     /// Once it is the case, the rootViewControllers are set on the tabBarController.
     ///
@@ -99,18 +99,18 @@ public extension Flows {
         setupTabBarController tabBarController: UITabBarController,
         with tabs: [TabWithStepperFlowContainer],
         animated: Bool = false) -> [NextFlowItem] {
-        
+
         Flows.whenReady(tabs: tabs) { (tabbedRoots: [(UIViewController, UITabBarItem)]) -> Void in
             tabbedRoots.forEach { $0.0.tabBarItem = $0.1 }
             tabBarController.setViewControllers(tabbedRoots.map { $0.0 }, animated: animated)
         }
-        
+
         // We can safely return the array of NextFlowItems since it is not dependent on the async call above
         return tabs.map { NextFlowItem(nextPresentable: $0.flow, nextStepper: $0.stepper) }
     }
 }
 
-//MARK: - NextFlowItems.multiple Convenience
+// MARK: - NextFlowItems.multiple Convenience
 public extension Flows {
     /// Allow to be triggered only when Flows given as parameters are ready to be displayed.
     /// Once it is the case, the block is executed
@@ -126,7 +126,7 @@ public extension Flows {
         block: @escaping (Target, [RootType]) -> Void) -> NextFlowItems {
         return .multiple(flowItems: Flows.whenReady(tabsWithSteppers: tabs, weak: target, block: block))
     }
-    
+
     /// Allow to be triggered only when Flows given as parameters are ready to be displayed.
     /// Once it is the case, the block is executed
     ///
@@ -141,7 +141,7 @@ public extension Flows {
         animated: Bool = false) -> NextFlowItems {
         return .multiple(flowItems: Flows.whenReady(setupTabBarController: tabBarController, with: tabs, animated: animated))
     }
-    
+
     /// Allow to be triggered only when Flows given as parameters are ready to be displayed.
     /// Once it is the case, the block is executed
     ///
@@ -156,5 +156,4 @@ public extension Flows {
         block: @escaping (Target, UITabBarController) -> Void) -> NextFlowItems {
         return .multiple(flowItems: Flows.whenReady(createTabBarWith: tabs, weak: target, block: block))
     }
-    
 }

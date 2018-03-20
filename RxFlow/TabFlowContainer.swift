@@ -22,11 +22,11 @@ public extension TabFlowContainer {
     public convenience init(flow: Flow, title: String) {
         self.init(flow: flow, title: title)
     }
-    
+
     public convenience init(flow: Flow, image: String, selectedImage: UIImage? = nil) {
         self.init(flow: flow, image: image, selectedImage: selectedImage)
     }
-    
+
     public convenience init(flow: Flow,
                             title: String?,
                             image: UIImage? = nil,
