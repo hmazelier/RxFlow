@@ -25,6 +25,7 @@
 		1A8FBE781FF9783100389464 /* RxFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8FBE771FF9783100389464 /* RxFlowTests.swift */; };
 		1A8FBE7A1FF9783100389464 /* RxFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AF8548C1FF8328D00271B52 /* RxFlow.framework */; };
 		1AF8549D1FF8328D00271B52 /* RxFlow.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AF8548F1FF8328D00271B52 /* RxFlow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		52151D4020C94C4B00BF5DE5 /* CompatibleFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52151D3F20C94C4B00BF5DE5 /* CompatibleFlow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +39,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A8FBDDF1FF8331900389464 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
-		1A8FBDE01FF8331900389464 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ../Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		1A8FBDE51FF8337700389464 /* UIViewController+Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Presentable.swift"; sourceTree = "<group>"; };
 		1A8FBDE61FF8337700389464 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		1A8FBDE71FF8337700389464 /* Stepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
@@ -61,6 +60,7 @@
 		1AF8548C1FF8328D00271B52 /* RxFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxFlow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF8548F1FF8328D00271B52 /* RxFlow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxFlow.h; sourceTree = "<group>"; };
 		1AF854901FF8328D00271B52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52151D3F20C94C4B00BF5DE5 /* CompatibleFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleFlow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +89,6 @@
 			children = (
 				1A8FBDFF1FF8428E00389464 /* RxCocoa.framework */,
 				1A8FBE001FF8428E00389464 /* RxSwift.framework */,
-				1A8FBDE01FF8331900389464 /* RxCocoa.framework */,
-				1A8FBDDF1FF8331900389464 /* RxSwift.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -149,6 +147,7 @@
 				1A8FBDF01FF8337800389464 /* Step.swift */,
 				1A8FBDEE1FF8337700389464 /* Presentable.swift */,
 				1A8FBDE71FF8337700389464 /* Stepper.swift */,
+				52151D3F20C94C4B00BF5DE5 /* CompatibleFlow.swift */,
 			);
 			path = RxFlow;
 			sourceTree = "<group>";
@@ -318,6 +317,7 @@
 				1A8FBDF71FF8337800389464 /* UIWindow+Rx.swift in Sources */,
 				1A8FBDF81FF8337800389464 /* Coordinator.swift in Sources */,
 				1A8FBDF51FF8337800389464 /* UIWindow+Presentable.swift in Sources */,
+				52151D4020C94C4B00BF5DE5 /* CompatibleFlow.swift in Sources */,
 				1A8FBDF91FF8337800389464 /* Rx+Pausable.swift in Sources */,
 				1A8FBDFE1FF8337800389464 /* Flow.swift in Sources */,
 				1A8FBDF61FF8337800389464 /* NextFlowItem.swift in Sources */,
