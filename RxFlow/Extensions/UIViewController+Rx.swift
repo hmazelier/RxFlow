@@ -24,8 +24,9 @@ extension Reactive where Base: UIViewController {
     /// Rx observable, triggered when the view is being dismissed
     public var dismissed: ControlEvent<Bool> {
 //        let source = self.sentMessage(#selector(Base.dismiss)).map { $0.first as? Bool ?? false }
+        let base = self.base // fix memory leak
         let source = self.sentMessage(#selector(Base.viewWillDisappear))
-            .filter { _ in self.base.isBeingDismissed }
+            .filter { [unowned base] _ in base.isBeingDismissed }
             .map { _ in false }
 
         return ControlEvent(events: source)
